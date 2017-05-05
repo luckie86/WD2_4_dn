@@ -1,0 +1,125 @@
+CREATE TABLE JobType (
+	JobTypeID INTEGER PRIMARY KEY AUTOINCREMENT,
+	Name TEXT
+);
+
+CREATE TABLE Region (
+	RegionID INTEGER PRIMARY KEY AUTOINCREMENT,
+	Name TEXT
+);
+
+CREATE TABLE Company (
+	CompanyID INTEGER PRIMARY KEY AUTOINCREMENT,
+	Name TEXT,
+	RegionID INTEGER
+);
+
+CREATE TABLE User (
+	UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+	Email TEXT,
+	UserName TEXT,
+	Password TEXT,
+	Type TEXT,
+	CompanyID INTEGER,
+	RegionID INTEGER
+);
+
+CREATE TABLE JobAd (
+	JobAdID INTEGER PRIMARY KEY AUTOINCREMENT,
+	CompanyID INTEGER,
+	PositionName TEXT,
+	Description TEXT,
+	JobTypeID INTEGER,
+	FullTime TEXT
+);
+
+
+
+INSERT INTO Region (Name)
+VALUES ('Štajerska');
+
+INSERT INTO Region (Name)
+VALUES ('Gorenjska');
+
+INSERT INTO Region (Name)
+VALUES ('Dolenjska');
+
+
+INSERT INTO JobType (Name)
+VALUES ('IT');
+
+INSERT INTO JobType (Name)
+VALUES ('Accounting');
+
+INSERT INTO JobType (Name)
+VALUES ('Marketing');
+
+INSERT INTO JobType (Name)
+VALUES ('Sales');
+
+
+INSERT INTO Company (Name, RegionID)
+VALUES ('Krka', 3);
+
+INSERT INTO Company (Name, RegionID)
+VALUES ('Laško', 1);
+
+INSERT INTO Company (Name, RegionID)
+VALUES ('Dolenjske Toplice', 3);
+
+INSERT INTO Company (Name, RegionID)
+VALUES ('Elektro Gorenjska', 2);
+
+
+INSERT INTO User (Email, UserName, Password, Type, CompanyID, RegionID)
+VALUES ('branko.jurjevec@krka.si', 'Branko', 'dfs0sf99gsd0fsd', 'Employer', 1, 3);
+
+INSERT INTO User (Email, UserName, Password, Type, CompanyID, RegionID)
+VALUES ('jure.hrzenjak@lasko.si', 'Jure', 'gds9gfdf9sf7sdfds6', 'Employer', 2, 1);
+
+INSERT INTO User (Email, UserName, Password, Type, CompanyID, RegionID)
+VALUES ('Helena.vratovinec@dt.si', 'Helena', 'fg9d3vsdf043fek', 'Employer', 3, 3);
+
+INSERT INTO User (Email, UserName, Password, Type, CompanyID, RegionID)
+VALUES ('Marko.Podkrajsek@et.si', 'Marko', 'gsdfg942dkas02', 'Employer', 4, 2);
+
+INSERT INTO User (Email, UserName, Password, Type, RegionID)
+VALUES ('Mirko.vozel@gmail.com', 'Mirko', 'fga8f923kdfs9fg7', 'Employee', 1);
+
+INSERT INTO User (Email, UserName, Password, Type, RegionID)
+VALUES ('Matjaž.grubenjakl@gmail.com', 'Matjaž', 'kfit49f9sf3fds00', 'Employee', 2);
+
+INSERT INTO User (Email, UserName, Password, Type, RegionID)
+VALUES ('Mojca.mavec@gmail.com', 'Mojca', 'sdgfd932sdo012sdf', 'Employee', 3);
+
+
+INSERT INTO JobAd (CompanyID, PositionName, Description, JobTypeID, FullTime)
+VALUES (1, 'Head of IT', 'Experienced Senior IT DBA', 1, 'Fulltime');
+
+INSERT INTO JobAd (CompanyID, PositionName, Description, JobTypeID, FullTime)
+VALUES (2, 'Accountant', 'Experienced Accountant', 2, 'Parttime');
+
+INSERT INTO JobAd (CompanyID, PositionName, Description, JobTypeID, FullTime)
+VALUES (3, 'Maketing', 'Experienced Maketing strategist', 3, 'Fulltime');
+
+INSERT INTO JobAd (CompanyID, PositionName, Description, JobTypeID, FullTime)
+VALUES (4, 'Sales', 'On field salesman/woman', 4, 'Fulltime');
+
+
+ALTER TABLE User
+ADD AppliedFor INTEGER;
+
+UPDATE User
+SET AppliedFor=2
+WHERE UserID=5
+
+UPDATE User
+SET AppliedFor=3
+WHERE UserID=3
+
+UPDATE User
+SET AppliedFor=4
+WHERE UserID=7
+
+
+
